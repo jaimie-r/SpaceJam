@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'rest_framework',
     'app.apps.AppsConfig',
     'corsheaders',
@@ -89,13 +90,13 @@ WSGI_APPLICATION = 'app.wsgi.app'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'OPTIONS': {
             'options': '-c search_path=app,public',
         },
         'NAME': 'okc',
         'USER': 'okcapplicant',
-        'PASSWORD': 'thunder',
+        'PASSWORD': 'europe2014',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     },
