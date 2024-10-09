@@ -8,4 +8,4 @@ const routes: Routes = [
   { path: '**', redirectTo: 'player-summary'}
 ];
 
-export const routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' });
+export const routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes, {});

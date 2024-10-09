@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {NgModule} from '@angular/core';
 
 import {routing} from 'app/app.routing';
@@ -22,31 +22,24 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatOptionModule} from '@angular/material/core';
 import {MatTabsModule} from '@angular/material/tabs';
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    CommonModule,
-    MatButtonModule,
-    MatToolbarModule,
-    FlexLayoutModule,
-    MatMenuModule,
-    MatInputModule,
-    MatIconModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatDatepickerModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatTabsModule,
-    routing
-  ],
-  providers: [PlayersService],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        CommonModule,
+        MatButtonModule,
+        MatToolbarModule,
+        FlexLayoutModule,
+        MatMenuModule,
+        MatInputModule,
+        MatIconModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatDatepickerModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatTabsModule,
+        routing], providers: [PlayersService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

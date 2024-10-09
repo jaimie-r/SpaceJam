@@ -15,7 +15,7 @@ app-component {
     padding-left: 20px;
     box-sizing: border-box;
   }
-
+  /* TODO(mdc-migration): The following rule targets internal classes of tabs that may no longer apply for the MDC version. */
   .mat-tab-list {
     .mat-ink-bar {
       background-color: $color-thunder-blue !important;

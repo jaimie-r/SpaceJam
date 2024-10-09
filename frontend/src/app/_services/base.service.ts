@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpParameterCodec} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpParameterCodec } from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
