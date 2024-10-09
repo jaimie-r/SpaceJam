@@ -20,7 +20,7 @@ import { PlayerSummary } from './player-summary.interface';
 export class PlayerSummaryComponent implements OnInit, OnDestroy {
 
   // Defining a property for player summary data using my PlayerSummary interface
-  playerSummary: PlayerSummary;
+  playerSummary: PlayerSummary | null = null;
 
   constructor(
     protected activatedRoute: ActivatedRoute,
@@ -31,11 +31,25 @@ export class PlayerSummaryComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // fetching playerID from the route params
-    this.playersService.getPlayerSummary(1).pipe(untilDestroyed(this)).subscribe((data: PlayerSummary) => {
-      // Assign the API response to the playerSummary property
+    // listens for changes in the URL
+    this.activatedRoute.params.subscribe(params => {
+      // extracts playerID from the URL
+      const playerID = params['playerID'];
+      if (playerID) {
+        // if playerID exists in the URL, get player summary
+        this.fetchPlayerSummary(playerID);
+      }
+    });
+  }
+
+  fetchPlayerSummary(playerID: number): void {
+    // getPlayerSummary gets data from backend API
+    // pipe ends the subscription so you quit listening to the URL
+    // subscribe allows the component to use the playerSummary data
+    this.playersService.getPlayerSummary(playerID).pipe(untilDestroyed(this)).subscribe((data: PlayerSummary) => {
       this.playerSummary = data;
-      console.log(this.playerSummary);  // Log the full player summary data
+      // log prints API response to browser's console
+      console.log(data);
     });
   }
 
