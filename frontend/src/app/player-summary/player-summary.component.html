@@ -1,1 +1,74 @@
-<div class="placeholder">Place your content here!</div>
+<h1>Player Summary Page</h1>
+<div>
+  <mat-form-field>
+    <!-- mat-select is a dropdown component for user to choose from -->
+    <!-- [(ngModel)]="playerID" sets mat-select val to playerID -->
+    <!-- (selectionChange)="changeParams()" when the dropdown selection changes, changeParams() is called -->
+    <mat-select [(ngModel)]="playerID" [ngModelOptions]="{standalone: true}" (selectionChange)="changeParams()">
+      <mat-option *ngFor="let _ of [].constructor(31); let i = index" [value]="i + 1">{{ i + 1}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div>API response for {{ endpoint }}</div>
+<!-- pre is to display pre formatted text -->
+<!-- Displaying the player's name -->
+<h2>{{ apiResponse.name }}</h2>
+<!-- Iterate over each game in the games array -->
+<div *ngFor="let game of apiResponse.games; let i = index">
+  <h3>Game {{ i + 1 }}: {{ game.date }}</h3>
+
+  <!-- First table (for the first 11 keys, excluding 'date') -->
+  <table border="1">
+    <thead>
+      <tr>
+        <!-- First row: Display the first 11 keys (excluding 'date') -->
+        <th *ngFor="let key of getFirstTableKeys(game)">{{ key }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- Second row: Display the values for the first 11 keys -->
+        <td *ngFor="let value of getFirstTableValues(game)">{{ value }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br/>
+
+  <!-- Second table (for the remaining keys) -->
+  <table border="1">
+    <thead>
+      <tr>
+        <!-- First row: Display the remaining keys -->
+        <th *ngFor="let key of getSecondTableKeys(game)">{{ key }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- Second row: Display the values for the remaining keys -->
+        <td *ngFor="let value of getSecondTableValues(game)">{{ value }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Adding blank space before the image -->
+  <div style="height: 20px;"></div>
+
+  <!-- Court Diagram with Shots -->
+    <div class="court-diagram-container">
+      <img src="assets/court_diagram.jpg" class="court-diagram" alt="Court Diagram">
+      
+      <!-- Iterate over the shots and place markers on the court -->
+      <!-- [ngStyle]= sets the position of the short marker -->
+      <div *ngFor="let shot of game.shots" 
+          [ngStyle]="getShotPosition(shot.locationX, shot.locationY)" 
+          class="shot-marker" 
+          [class.made]="shot.isMake"
+          [class.missed]="!shot.isMake">
+        <!-- Use a different icon for made/missed shots -->
+        <span *ngIf="shot.isMake">✔️</span>  <!-- Made shot -->
+        <span *ngIf="!shot.isMake">❌</span>  <!-- Missed shot -->
+      </div>
+    </div>
+  <br/>
+</div>

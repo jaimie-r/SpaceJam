@@ -6,6 +6,7 @@ import {NgModule} from '@angular/core';
 import {routing} from 'app/app.routing';
 import {AppComponent} from 'app/app.component';
 import {PlayersService} from 'app/_services/players.service';
+import { PlayerSummaryModule } from './player-summary/player-summary.module';
 
 import {CommonModule} from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
@@ -41,5 +42,6 @@ import {MatTabsModule} from '@angular/material/tabs';
         MatSelectModule,
         MatOptionModule,
         MatTabsModule,
+        PlayerSummaryModule,
         routing], providers: [PlayersService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

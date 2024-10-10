@@ -1,6 +1,9 @@
 <h1>Player Summary Response Page</h1>
 <div>
   <mat-form-field>
+    <!-- mat-select is a dropdown component for user to choose from -->
+    <!-- [(ngModel)]="playerID" sets mat-select val to playerID -->
+    <!-- (selectionChange)="changeParams()" when the dropdown selection changes, changeParams() is called -->
     <mat-select [(ngModel)]="playerID" [ngModelOptions]="{standalone: true}" (selectionChange)="changeParams()">
       <mat-option *ngFor="let _ of [].constructor(31); let i = index" [value]="i + 1">{{ i + 1}}</mat-option>
     </mat-select>

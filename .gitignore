@@ -49,3 +49,6 @@ frontend/Thumbs.db
 # pyenv
 .python-version
 version.ts
+
+# Ignore Angular cache
+frontend/.angular/cache/
