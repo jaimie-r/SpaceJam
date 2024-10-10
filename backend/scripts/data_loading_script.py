@@ -1,3 +1,4 @@
+# NOTE: I implemented this in management/commands so you can run python manage.py runserver (port number) to run the server
 import json
 from django.core.management.base import BaseCommand
 from app.models import Game, Player, Team, GamePlayerStats, Shots
