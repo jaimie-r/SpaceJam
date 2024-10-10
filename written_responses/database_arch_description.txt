@@ -1,0 +1,13 @@
+This database architecture includes the following models:
+
+Team: Stores team information with a name field.
+Player: Tracks player details, also using a name field.
+Game: Represents individual games, with fields for date and references to home_team and away_team. 
+Each team relationship is established via foreign keys.
+GamePlayerStats: This model captures a player's statistics for a specific game. It includes fields 
+for performance metrics like points, assists, and rebounds, and is linked to both the Player and 
+Game models via foreign keys.
+Shots: Stores data about individual shot attempts, including coordinates (location_x, location_y) 
+and whether the shot was successful (is_made). Each shot is associated with a GamePlayerStats 
+instance. The architecture emphasizes relational connections between teams, players, games, and 
+player performance, ensuring efficient data querying and flexibility for game stats analysis.
